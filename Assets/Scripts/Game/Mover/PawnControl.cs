@@ -13,13 +13,13 @@ namespace Assets.Scripts.Game
         IDLE = 0,
         WALK,
         LOOK_AROUND,
-        GATHER,
         ATTACK,
 
         DEAD,
     }
 
-    public class PawnControl : MonoBehaviour
+    [Serializable]
+    public class PawnControl
     {
         public PawnState m_PawnState = PawnState.IDLE;
         public float m_StateChangedTime = 0.0f;

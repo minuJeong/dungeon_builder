@@ -50,19 +50,6 @@ namespace Assets.Scripts.Game
             pawn.SetState(PawnState.IDLE);
         }
 
-        private void OnGather(Pawn pawn)
-        {
-            if (pawn.m_FollowTarget == null || pawn.m_FollowTarget.m_PawnState == PawnState.DEAD)
-            {
-                pawn.SetState(PawnState.IDLE);
-                return;
-            }
-
-            Vector3 targetPos = pawn.m_FollowTarget.transform.position;
-            targetPos += (pawn.transform.position - targetPos).normalized * GATHER_DISTANCE;
-            pawn.m_Agent.SetDestination(targetPos);
-        }
-
         private void OnAttack(Pawn pawn)
         {
             if (pawn.m_FollowTarget == null || pawn.m_FollowTarget.m_PawnState == PawnState.DEAD)
@@ -97,10 +84,6 @@ namespace Assets.Scripts.Game
                 case PawnState.LOOK_AROUND:
                     OnLookAround(pawn);
                     break;
-
-                case PawnState.GATHER:
-                    OnGather(pawn);
-                    break;
             }
         }
 
@@ -108,14 +91,7 @@ namespace Assets.Scripts.Game
         {
             switch (pawn.m_PawnState)
             {
-                case PawnState.GATHER:
-                    OnGather(pawn);
-                    break;
-
                 default:
-                    Pawn closestVisibleFriend = visibleFriends.OrderBy((p) => (pawn.transform.position - p.transform.position).sqrMagnitude).FirstOrDefault();
-                    pawn.SetTarget(closestVisibleFriend);
-                    pawn.SetState(PawnState.GATHER);
                     break;
 
             }
@@ -147,15 +123,7 @@ namespace Assets.Scripts.Game
             }
             else
             {
-                List<Pawn> visibleFriends = friends.FindAll((p) => p != pawn && pawn.CheckVisible(p.transform.position));
-                if (visibleFriends.Count > 0)
-                {
-                    ReactToVisibleFriends(pawn, visibleFriends);
-                }
-                else
-                {
-                    ReactWhenAlone(pawn);
-                }
+                ReactWhenAlone(pawn);
             }
         }
 

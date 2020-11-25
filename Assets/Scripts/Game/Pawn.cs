@@ -2,6 +2,7 @@
 using Assets.Scripts.Data;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,13 +12,19 @@ using UnityEditor;
 namespace Assets.Scripts.Game
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    [RequireComponent(typeof(PawnControl))]
     public class Pawn : MonoBehaviour
     {
         // public serialized:
-        [SerializeField] public Team m_Team;
+        [Header("Data")]
         [SerializeField] public PawnData m_PawnData;
+
+        [Header("AI")]
+        [SerializeField] public Team m_Team;
         [SerializeField] public PawnSight m_PawnSight;
+        [SerializeField] public PawnControl m_PawnControl;
+
+        [Header("DEBUG")]
+        [SerializeField] public TextMeshPro m_DEBUG_StateDisplay;
 
         // public
         public PawnState m_PawnState => m_PawnControl.m_PawnState;
@@ -30,8 +37,6 @@ namespace Assets.Scripts.Game
         public bool IsTargetDead() => m_PawnControl.IsTargetDead();
 
         // private:
-        private PawnControl m_PawnControl;
-
         private NavMeshAgent m_NavMeshAgent;
 
         private void Awake()
@@ -47,7 +52,6 @@ namespace Assets.Scripts.Game
                 PawnManager.Instance.m_Pawns[m_Team].Add(this);
             }
 
-            m_PawnControl = GetComponent<PawnControl>();
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
         }
 
@@ -77,12 +81,7 @@ namespace Assets.Scripts.Game
                 case PawnState.WALK:
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(transform.position, m_Agent.destination);
-                    break;
-
-                case PawnState.GATHER:
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawLine(transform.position, m_Agent.destination);
-                    break;
+                    break;;
             }
         }
 #endif
@@ -95,16 +94,16 @@ namespace Assets.Scripts.Game
                 case PawnState.WALK:
                     Debug.DrawLine(transform.position, m_Agent.destination, Color.green);
                     break;
-
-                case PawnState.GATHER:
-                    Debug.DrawLine(transform.position, m_Agent.destination, Color.blue);
-                    break;
             }
         }
 
         public void SetState(PawnState nextState)
         {
             m_PawnControl.SetState(nextState);
+            if (null != m_DEBUG_StateDisplay)
+            {
+                m_DEBUG_StateDisplay.text = nextState.ToString();
+            }
         }
 
         public void SetTarget(Pawn target)

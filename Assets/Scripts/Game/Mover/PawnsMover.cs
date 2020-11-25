@@ -61,7 +61,7 @@ namespace Assets.Scripts.Game
             Vector3 delta = pawn.transform.position - pawn.m_FollowTarget.transform.position;
             if (delta.sqrMagnitude < MELEE_DISTANCE * MELEE_DISTANCE + 0.1f)
             {
-                pawn.transform.LookAt(pawn.m_FollowTarget.transform.position);
+                // ATTACK
             }
             else
             {
@@ -84,16 +84,6 @@ namespace Assets.Scripts.Game
                 case PawnState.LOOK_AROUND:
                     OnLookAround(pawn);
                     break;
-            }
-        }
-
-        private void ReactToVisibleFriends(Pawn pawn, List<Pawn> visibleFriends)
-        {
-            switch (pawn.m_PawnState)
-            {
-                default:
-                    break;
-
             }
         }
 
@@ -129,17 +119,13 @@ namespace Assets.Scripts.Game
 
         public IEnumerator ThinkCoroutine()
         {
-            yield return null;
-
-            bool escapeEnumerator = true;
-            while (escapeEnumerator)
+            while (true)
             {
                 Dictionary<Team, List<Pawn>>.Enumerator en = m_PawnManager.m_Pawns.GetEnumerator();
                 while (en.MoveNext())
                 {
                     en.Current.Value.ForEach((pawn) => PawnThink(pawn, en.Current.Value, m_PawnManager.GetEnemies(en.Current.Key)));
                 }
-
                 yield return null;
             }
         }

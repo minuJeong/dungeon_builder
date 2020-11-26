@@ -23,9 +23,6 @@ namespace Assets.Scripts.Game
         [SerializeField] public PawnSight m_PawnSight;
         [SerializeField] public PawnControl m_PawnControl;
 
-        [Header("DEBUG")]
-        [SerializeField] public TextMeshPro m_DEBUG_StateDisplay;
-
         // public
         public PawnState m_PawnState => m_PawnControl.m_PawnState;
         public float m_ElapsedTimeInState => m_PawnControl.m_ElapsedTimeInState;
@@ -71,7 +68,7 @@ namespace Assets.Scripts.Game
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
             Handles.Label(
                 transform.position,
-                string.Format("state: {0} / walking[{1}]",
+                string.Format("state: {0} / is dest: [{1}]",
                     m_PawnState,
                     !IsReachedDestination()
             ));
@@ -100,10 +97,6 @@ namespace Assets.Scripts.Game
         public void SetState(PawnState nextState)
         {
             m_PawnControl.SetState(nextState);
-            if (null != m_DEBUG_StateDisplay)
-            {
-                m_DEBUG_StateDisplay.text = nextState.ToString();
-            }
         }
 
         public void SetTarget(Pawn target)

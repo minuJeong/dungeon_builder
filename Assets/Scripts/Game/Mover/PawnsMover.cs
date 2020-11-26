@@ -14,8 +14,7 @@ namespace Assets.Scripts.Game
     public class PawnsMover
     {
         const float RANDOM_STRAY_RANGE = 5.0f;
-        const float LOOK_AROUND_TIME = 0.5f;
-        const float GATHER_DISTANCE = 5.0f;
+        const float LOOK_AROUND_TIME = 2.5f;
         const float MELEE_DISTANCE = 3.0f;
 
         private PawnManager m_PawnManager = PawnManager.Instance;
@@ -45,9 +44,23 @@ namespace Assets.Scripts.Game
 
         private void OnLookAround(Pawn pawn)
         {
-            if (pawn.m_ElapsedTimeInState < LOOK_AROUND_TIME) { return; }
+            if (pawn.m_ElapsedTimeInState < LOOK_AROUND_TIME)
+            {
+                float progress = pawn.m_ElapsedTimeInState / LOOK_AROUND_TIME;
+                float angle = Mathf.Cos(progress * Mathf.PI * 2.0f) * Mathf.PI;
+                pawn.transform.Rotate(Vector3.up, angle);
+                return;
+            }
 
             pawn.SetState(PawnState.IDLE);
+        }
+
+        private void OnStartAttack(Pawn pawn, List<Pawn> visibleEnemies)
+        {
+            Pawn closestVisibleEnemy = visibleEnemies.OrderBy((p) => (pawn.transform.position - p.transform.position).sqrMagnitude).FirstOrDefault();
+            pawn.SetTarget(closestVisibleEnemy);
+            pawn.m_Agent.SetDestination(closestVisibleEnemy.transform.position);
+            pawn.SetState(PawnState.ATTACK);
         }
 
         private void OnAttack(Pawn pawn)
@@ -84,6 +97,12 @@ namespace Assets.Scripts.Game
                 case PawnState.LOOK_AROUND:
                     OnLookAround(pawn);
                     break;
+
+                case PawnState.DEAD:
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -95,11 +114,11 @@ namespace Assets.Scripts.Game
                     OnAttack(pawn);
                     break;
 
+                case PawnState.DEAD:
+                    break;
+
                 default:
-                    Pawn closestVisibleEnemy = visibleEnemies.OrderBy((p) => (pawn.transform.position - p.transform.position).sqrMagnitude).FirstOrDefault();
-                    pawn.SetTarget(closestVisibleEnemy);
-                    pawn.m_Agent.SetDestination(closestVisibleEnemy.transform.position);
-                    pawn.SetState(PawnState.ATTACK);
+                    OnStartAttack(pawn, visibleEnemies);
                     break;
             }
         }

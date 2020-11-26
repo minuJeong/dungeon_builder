@@ -66,18 +66,19 @@ namespace Assets.Scripts.MeshGen
 
             List<Vector3> vertices = new List<Vector3>();
             vertices.Add(Vector3.zero);
-            float angleStep = 1.0f / ARC_RESOLUTION;
+            float angleStep = angle / (ARC_RESOLUTION - 1.0f);
+            float angleStart = angle * -0.5f;
             for (int i = 0; i < ARC_RESOLUTION; i++)
             {
-                float x = Mathf.Cos(-angle + (angle + i * angleStep)) * dist;
-                float z = Mathf.Sin(-angle + (angle + i * angleStep)) * dist;
-                vertices.Add(new Vector3(x, 0.02f, z));
+                float x = Mathf.Sin(angleStart + (i * angleStep)) * dist;
+                float z = Mathf.Cos(angleStart + (i * angleStep)) * dist;
+                vertices.Add(new Vector3(x, 0.0f, z));
             }
 
             List<int> triangles = new List<int>();
             for (int i = 0; i < ARC_RESOLUTION - 1; i++)
             {
-                triangles.AddRange(new int[] { 0, i + 2, i + 1 });
+                triangles.AddRange(new int[] { 0, i + 1, i + 2 });
             }
 
             m_GeneratedMesh = new Mesh();

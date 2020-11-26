@@ -9,6 +9,8 @@
 		Tags { "RenderType" = "Transparent" "RenderQueue" = "Transparent" }
 		LOD 100
 		Blend SrcAlpha OneMinusSrcAlpha
+		ZWrite Off
+		ZTest Off
 
 		Pass
 		{
@@ -44,9 +46,9 @@
 			{
 				float3 pos = i.local_position.xyz;
 				float distance = length(pos);
-				float x = smoothstep(0.5f, 2.5f, distance);
+				float x = smoothstep(0.5f, 2.5f, distance) * 0.25f;
 
-				fixed4 col = fixed4(x, x, x, x);
+				fixed4 col = fixed4(0.86f, 0.65f, 0.34f, x);
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
 			}

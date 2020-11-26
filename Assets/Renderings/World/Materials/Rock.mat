@@ -8,10 +8,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rock
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 718c1c4a4587bb04f95fc931674e4151,
+    type: 3}
   m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -19,6 +20,22 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_4B22101F:
+        m_Texture: {fileID: 2800000, guid: f9f7d6aba45d0c3468427f21e42987d7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_6E6D1D88:
+        m_Texture: {fileID: 2800000, guid: 3fa5533f73ecc6a4292c6e0effcd329a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_AE5C7EAE:
+        m_Texture: {fileID: 2800000, guid: f987f4f2c7ae3cb48ac0bc081405089a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AO:
+        m_Texture: {fileID: 2800000, guid: f987f4f2c7ae3cb48ac0bc081405089a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -40,11 +57,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3fa5533f73ecc6a4292c6e0effcd329a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: f9f7d6aba45d0c3468427f21e42987d7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -55,7 +76,48 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_3BA06B49_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 3fa5533f73ecc6a4292c6e0effcd329a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_41207B70_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 3fa5533f73ecc6a4292c6e0effcd329a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_6B35C09C_Texture_1:
+        m_Texture: {fileID: 2800000, guid: f987f4f2c7ae3cb48ac0bc081405089a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_8EA3A5D6_Texture_1:
+        m_Texture: {fileID: 2800000, guid: f9f7d6aba45d0c3468427f21e42987d7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_91E845C3_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 3fa5533f73ecc6a4292c6e0effcd329a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_B96D155E_Texture_1:
+        m_Texture: {fileID: 2800000, guid: f987f4f2c7ae3cb48ac0bc081405089a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_BE04D8A9_Texture_1:
+        m_Texture: {fileID: 2800000, guid: f9f7d6aba45d0c3468427f21e42987d7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_CA6E738F_Texture_1:
+        m_Texture: {fileID: 2800000, guid: f987f4f2c7ae3cb48ac0bc081405089a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_DED35230_Texture_1:
+        m_Texture: {fileID: 2800000, guid: f9f7d6aba45d0c3468427f21e42987d7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_EB9C0CB4_Texture_1:
+        m_Texture: {fileID: 2800000, guid: f987f4f2c7ae3cb48ac0bc081405089a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_ABFD8697: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1

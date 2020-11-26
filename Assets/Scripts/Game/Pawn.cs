@@ -85,11 +85,11 @@ namespace Assets.Scripts.Game
 
         private void Update()
         {
-            Debug.DrawRay(transform.position, transform.forward, Color.red);
+            // Debug.DrawRay(transform.position, transform.forward, Color.red);
             switch (m_PawnState)
             {
                 case PawnState.WALK:
-                    Debug.DrawLine(transform.position, m_Agent.destination, Color.green);
+                    // Debug.DrawLine(transform.position, m_Agent.destination, Color.green);
                     break;
             }
         }

@@ -36,12 +36,12 @@ namespace Assets.Scripts.Game
 
     public class Game : MonoBehaviour
     {
-        private PawnsMover m_PawnMover;
+        private PawnsMover m_PawnsMover;
 
         private void Start()
         {
-            m_PawnMover = new PawnsMover();
-            StartCoroutine(m_PawnMover.ThinkCoroutine());
+            m_PawnsMover = new PawnsMover();
+            StartCoroutine(m_PawnsMover.ThinkCoroutine());
         }
     }
 }
